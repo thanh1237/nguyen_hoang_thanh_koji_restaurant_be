@@ -33,6 +33,7 @@ authController.loginWithFaceBookOrGoogle = catchAsync(
     // allow user to login or create a new account
     // depends on whether email already exists
     let profile = req.user;
+    console.log("fbbbb", profile.avatarUrl);
     profile.email = profile.email.toLowerCase();
     let user = await User.findOne({ email: profile.email });
     if (user) {

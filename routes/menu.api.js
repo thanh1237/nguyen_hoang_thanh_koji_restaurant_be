@@ -15,7 +15,7 @@ router.get("/", menuController.getMenu);
  * @description POST menu list
  *@access public
  */
-router.post("/", upload.single("image"), menuController.createMenu);
+router.post("/", menuController.createMenu);
 
 /**
  * @route GET api/menu/:id

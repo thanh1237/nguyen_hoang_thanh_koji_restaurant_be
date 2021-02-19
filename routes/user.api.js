@@ -15,7 +15,7 @@ router.get("/me", authentication.loginRequired, userController.getCurrentUser);
  * @description Get list of all users
  * @access Login required
  */
-router.get("/", authentication.loginRequired, userController.getUsers);
+router.get("/", userController.getUsers);
 
 /**
  * @route POST api/users

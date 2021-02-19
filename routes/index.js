@@ -19,4 +19,10 @@ router.use("/resume", resumeApi);
 const menuApi = require("./menu.api");
 router.use("/menu", menuApi);
 
+const reactionApi = require("./reaction.api");
+router.use("/reaction", reactionApi);
+
+const reviewApi = require("./review.api");
+router.use("/review", reviewApi);
+
 module.exports = router;

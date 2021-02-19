@@ -7,11 +7,6 @@ const Menu = require("../models/Menu");
 const Formidable = require("formidable");
 const cloudinary = require("cloudinary");
 
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.API_KEY,
-  api_secret: process.env.API_SECRET,
-});
 const menuController = {};
 
 menuController.getMenu = catchAsync(async (req, res, next) => {
@@ -35,25 +30,16 @@ menuController.getMenu = catchAsync(async (req, res, next) => {
 menuController.createMenu = catchAsync(async (req, res, next) => {
   // if (currentUser.role != "admin")
   //   return next(new AppError(400, "Admin Required", "Create Table Error"));
-  const form = new Formidable();
-  const { name, type, isDeleted } = req.body;
-
-  //save file inside cloadinary
-  cloudinary.uploader.upload();
-
+  const name = req.body.name;
+  const type = req.body.type;
+  const price = req.body.price;
+  const image = req.body.image;
   const menu = await Menu.create({
     name,
-    image,
     type,
-    isDeleted,
+    price,
+    image,
   });
-
-  form.parse(req, (err, fields, files) => {
-    res.writeHead(200, { "content-type": "text/plain" });
-    res.write("received upload\n\n");
-    res.end(util.inspect({ fields: fields, files: files }));
-  });
-  console.log(">>>>>>>>>", files);
 
   return sendResponse(res, 200, true, menu, null, "Create new Item successful");
 });

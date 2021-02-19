@@ -14,6 +14,7 @@ const userSchema = Schema(
       default: "customer",
       enum: ["admin", "customer"],
     },
+    avatarUrl: { type: String, require: false, default: "" },
     isDeleted: false,
   },
   { timestamps: true }

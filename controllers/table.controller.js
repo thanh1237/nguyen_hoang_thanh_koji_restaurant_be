@@ -72,13 +72,12 @@ tableController.updateSingleTable = catchAsync(async (req, res, next) => {
   const tableId = req.params.id;
   const status = req.body.status;
   const comment = req.body.comment;
-  const date = req.body.date;
+  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", comment);
   const table = await Table.findOneAndUpdate(
     { _id: tableId },
     {
-      date,
-      comment,
-      status,
+      comment: comment,
+      status: status.status,
     }
   );
   if (!table)

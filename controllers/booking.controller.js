@@ -20,7 +20,6 @@ bookingController.getListOfBooking = catchAsync(async (req, res, next) => {
     isDeleted: false,
   });
 
-  // console.log({ filter, sortBy });
   const booking = await Booking.find()
     .sort({ ...sortBy, createdAt: -1 })
     .populate("user")
@@ -32,8 +31,7 @@ bookingController.getListOfBooking = catchAsync(async (req, res, next) => {
 bookingController.createBooking = catchAsync(async (req, res, next) => {
   const users = req.userId;
   const currentUser = await User.findOne({ _id: users });
-  // if (currentUser.role != "admin")
-  //   return next(new AppError(400, "Admin Required", "Create Table Error"));
+
   const { user, tableId } = req.body;
 
   const booking = await Booking.create({

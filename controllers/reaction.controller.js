@@ -15,7 +15,7 @@ reactionController.createReaction = catchAsync(async (req, res, next) => {
   let reaction = await Reaction.find({ menuId: menuId });
   let countReaction;
   let update;
-  console.log("hahaha", reaction[0]);
+
   reaction[0] === undefined
     ? (reaction = await Reaction.create({
         menuId,
